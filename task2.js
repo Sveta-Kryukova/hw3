@@ -38,20 +38,13 @@ function splitString(str, divider = ' ') {
 function filterUniqueWords (str) {
   if (typeof str === 'string') {
     const wordsArray = splitString(str);
-    const uniqueWords = [];
-
-    for (let i = 0; i < wordsArray.length; i++) {
-      if (!uniqueWords.includes(wordsArray[i])) {
-        uniqueWords.push(wordsArray[i]);
-      }
-    }
+    const uniqueWords = wordsArray.filter((word, index, arr) => arr.indexOf(word) === index);
 
     return sortArray(uniqueWords);
   }
 
   return 'Invalid input';
 }
-
 //helper function
 function getStudentsGrades (students) {
   return students.map((student) => student.grades).flat()
