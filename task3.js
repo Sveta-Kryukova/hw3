@@ -15,11 +15,10 @@ function repeatFunction (fn, n) {
       fn();
     }
   }
-  if (typeof n !== 'number' || n < 0) {
-    throw new Error('Invalid input, n must be a positive number');
-  }
-  if (typeof fn !== 'function') {
-    throw new Error('Invalid input, fn must be a function');
+  if (n < 0) {
+    while (true) {
+      fn();
+    }
   }
   return '';
 }
@@ -27,4 +26,4 @@ function repeatFunction (fn, n) {
 function f() {
   console.log('Hello World')
 }
-console.log(repeatFunction(f, 5))
+console.log(repeatFunction(f, -1))

@@ -61,8 +61,12 @@ function getGradesTotal (grades) {
 }
 
 function getAverageGrade (students) {
+  if (Array.isArray(students) 
+    && students.every((obj) => typeof obj === 'object' 
+      && 'grades' in obj)) {
   const grades = getStudentsGrades(students)
   const gradesTotal = getGradesTotal(grades)
+  }
 
   return gradesTotal / grades.length
 }
