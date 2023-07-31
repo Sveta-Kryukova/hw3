@@ -25,11 +25,12 @@ function sortArray(arr, direction = 'asc') {
 
   return 'Invalid input';
 }
-//helper function
-function splitString(str, divider = ' ') {
+const removeSymbols = /[^a-z0-9' ]/gi;
+
+function splitString(str) {
   if (typeof str === 'string') {
-    const splitString = (str) => str.split(divider);
-    return splitString(str);
+    const splitResult = str.toLowerCase().replace(removeSymbols, null).split(' ');
+    return splitResult;
   }
 
   return 'Invalid input';
@@ -38,13 +39,17 @@ function splitString(str, divider = ' ') {
 function filterUniqueWords (str) {
   if (typeof str === 'string') {
     const wordsArray = splitString(str);
-    const uniqueWords = wordsArray.filter((word, index, arr) => arr.indexOf(word) === index);
+    
+    const uniqueWordsSet = new Set(wordsArray);
+    
+    const uniqueWords = Array.from(uniqueWordsSet);
 
     return sortArray(uniqueWords);
   }
 
   return 'Invalid input';
 }
+console.log(filterUniqueWords("How HOw To to make MaKe my My SalaRy salary bigger bigGER ?"))
 //helper function
 function getStudentsGrades (students) {
   return students.map((student) => student.grades).flat()
