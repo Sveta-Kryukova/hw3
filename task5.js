@@ -5,16 +5,22 @@ function lazyMap(arr, fn) {
   return 'Invalid input';
 }
 
-function* fibonacciGenerator() {
+function fibonacciGenerator() {
   let previous = 0;
   let current = 1;
 
-  while (true) {
-    let next = previous + current;
+  return function getNextFibonacci() {
+    const next = previous + current;
     previous = current;
     current = next;
-    yield current;
-  }
+    return current;
+  };
 }
 //for the fibonacciGenerator function call
-let fib = fibonacciGenerator();
+const getNextFibonacciNumber = fibonacciGenerator();
+
+console.log(getNextFibonacciNumber());
+console.log(getNextFibonacciNumber());
+console.log(getNextFibonacciNumber());
+console.log(getNextFibonacciNumber());
+console.log(getNextFibonacciNumber());

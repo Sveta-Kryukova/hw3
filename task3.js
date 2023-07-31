@@ -15,9 +15,16 @@ function repeatFunction (fn, n) {
       fn();
     }
   }
+  if (typeof n !== 'number' || n < 0) {
+    throw new Error('Invalid input, n must be a positive number');
+  }
+  if (typeof fn !== 'function') {
+    throw new Error('Invalid input, fn must be a function');
+  }
   return '';
 }
 //for the repeatFunction function call
 function f() {
   console.log('Hello World')
 }
+console.log(repeatFunction(f, 5))
