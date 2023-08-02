@@ -8,11 +8,20 @@ function lazyMap(arr, fn) {
 function fibonacciGenerator() {
   let previous = 0;
   let current = 1;
+  const cache = [previous, current];
 
   return function getNextFibonacci() {
     const next = previous + current;
     previous = current;
     current = next;
+
+    if (cache.length > current) {
+      return cache[current];
+    }
+
+    cache.push(current);
+    console.log(cache)
+
     return current;
   };
 }
